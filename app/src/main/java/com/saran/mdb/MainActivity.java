@@ -2,6 +2,7 @@ package com.saran.mdb;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
-
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         ApiInterface apiInterface = ApiCLient.getClient().create(ApiInterface.class);
 
         Call<LatestMovies> call = apiInterface.getTopLatestMovies(Constants.API_KEY,Constants.API_LANGUAGE);
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LatestMovies> call, Response<LatestMovies> response) {
                 if(response!=null){
+                    LatestMovies movies = response.body();
+                    mRecyclerView.setAdapter(new MoviesAdapter(movies.getResults(),R.layout.row_main));
                     Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_SHORT).show();
                 }
             }
