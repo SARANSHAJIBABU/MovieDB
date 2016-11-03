@@ -25,9 +25,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     }
 
     @Override
-    public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MoviesViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(mRowLayout,parent,false);
-        return new MoviesViewHolder(view);
+        return new MoviesViewHolder(view, new MoviesViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int postion) {
+                ((MainActivity)parent.getContext()).onItemClick(view,postion);
+            }
+        });
     }
 
     @Override
@@ -43,18 +48,30 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         return mMovies.size();
     }
 
-    public static class MoviesViewHolder extends RecyclerView.ViewHolder{
+    public static class MoviesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
         TextView date;
         ImageView star;
         TextView rating;
+        OnItemClickListener listener;
 
-        public MoviesViewHolder(View row) {
+        public MoviesViewHolder(View row,OnItemClickListener l) {
             super(row);
             name = (TextView) row.findViewById(R.id.tv_main_row_name);
             date = (TextView) row.findViewById(R.id.tv_main_row_date);
             star = (ImageView) row.findViewById(R.id.iv_main_row_star);
             rating = (TextView) row.findViewById(R.id.tv_main_row_rating);
+            row.setOnClickListener(this);
+            listener = l;
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(v,getAdapterPosition());
+        }
+
+        public interface OnItemClickListener{
+            void onItemClick(View view,int postion);
         }
     }
 

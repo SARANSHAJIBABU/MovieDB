@@ -70,4 +70,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void onItemClick(View view, int position){
+        Toast.makeText(this,"clicked "+position,Toast.LENGTH_SHORT).show();
+    }
+
 }
