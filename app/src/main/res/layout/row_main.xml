@@ -26,14 +26,6 @@
             android:text="2010-10-10"
             android:layout_gravity="left"
             android:id="@+id/tv_main_row_date"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:maxLines="3"
-            android:text=" an example and show how to create Java objects that will be able to parse the latest movies. Based on the JSON response returned for this API call, let’s first define how a basic movie representation should look like:"
-            android:layout_gravity="center"
-            android:id="@+id/tv_main_row_desc"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +44,7 @@
             android:id="@+id/tv_main_row_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:layout_gravity="center"
             android:text="8.3"/>
     </LinearLayout>

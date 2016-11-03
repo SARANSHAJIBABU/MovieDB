@@ -36,7 +36,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         holder.rating.setText(movie.getVoteAverage().toString());
         holder.name.setText(movie.getTitle());
         holder.date.setText(movie.getReleaseDate());
-        holder.description.setText(movie.getOverview());
     }
 
     @Override
@@ -47,7 +46,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     public static class MoviesViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         TextView date;
-        TextView description;
         ImageView star;
         TextView rating;
 
@@ -55,7 +53,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             super(row);
             name = (TextView) row.findViewById(R.id.tv_main_row_name);
             date = (TextView) row.findViewById(R.id.tv_main_row_date);
-            description = (TextView) row.findViewById(R.id.tv_main_row_desc);
             star = (ImageView) row.findViewById(R.id.iv_main_row_star);
             rating = (TextView) row.findViewById(R.id.tv_main_row_rating);
         }
