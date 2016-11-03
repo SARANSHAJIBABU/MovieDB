@@ -1,9 +1,14 @@
 package com.saran.mdb;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecorator(this));
         ApiInterface apiInterface = ApiCLient.getClient().create(ApiInterface.class);
 
         Call<LatestMovies> call = apiInterface.getTopLatestMovies(Constants.API_KEY,Constants.API_LANGUAGE);
@@ -39,5 +45,29 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Failure",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    class SimpleDividerItemDecorator extends RecyclerView.ItemDecoration{
+        private Drawable divider;
+
+        public SimpleDividerItemDecorator(Context context){
+            divider = ContextCompat.getDrawable(context,R.drawable.line_divider);
+        }
+
+        @Override
+        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            int left = parent.getPaddingLeft();
+            int right = parent.getWidth() - parent.getPaddingRight();
+            int childCount = parent.getChildCount();
+
+            for(int i=0; i<childCount; i++){
+                View child = parent.getChildAt(i);
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+                int top = child.getBottom()+params.bottomMargin;
+                int bottom = top+divider.getIntrinsicHeight();
+                divider.setBounds(left,top,right,bottom);
+                divider.draw(c);
+            }
+        }
     }
 }
