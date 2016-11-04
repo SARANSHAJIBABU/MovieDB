@@ -72,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onItemClick(View view, int position){
-        startActivity(new Intent(this,DetailActivity.class));
+    public void onItemClick(LatestMovies.Result movie){
+        Intent intent = new Intent(this,DetailActivity.class);
+        startActivity(intent.putExtra("mivie_id",movie.getId()));
     }
 
 }

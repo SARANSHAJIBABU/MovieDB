@@ -30,7 +30,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         return new MoviesViewHolder(view, new MoviesViewHolder.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int postion) {
-                ((MainActivity)parent.getContext()).onItemClick(view,postion);
+                ((MainActivity)parent.getContext()).onItemClick(mMovies.get(postion));
             }
         });
     }
