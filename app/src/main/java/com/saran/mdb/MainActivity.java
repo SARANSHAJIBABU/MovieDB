@@ -1,6 +1,7 @@
 package com.saran.mdb;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onItemClick(View view, int position){
-        Toast.makeText(this,"clicked "+position,Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this,DetailActivity.class));
     }
 
 }

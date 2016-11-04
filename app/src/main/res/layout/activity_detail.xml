@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.saran.mdb.DetailActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/iv_detail_top" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_detail_top"
+        android:layout_margin="10dp"
+        android:textSize="15sp"
+        tools:text="All eight remaining attributes in the tools namespace are related to the UI preview pane of the IDE. That’s why I choose to call them UI attributes.
+They’re not of much help outside of your IDE, but they can make things definitely simpler for you when you’re in it, designing some layouts XML. These attributes are:"/>
+</RelativeLayout>
