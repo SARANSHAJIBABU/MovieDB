@@ -32,7 +32,11 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LatestMovies.Result> call, Response<LatestMovies.Result> response) {
                 Log.d("Detail","Success");
-                Glide.with(DetailActivity.this).load("http://image.tmdb.org/t/p/original"+response.body().getBackdropPath()).into(imageView);
+                Glide.with(DetailActivity.this)
+                        .load("http://image.tmdb.org/t/p/original"+response.body()
+                        .getBackdropPath())
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(imageView);
                 tv.setText(response.body().getOverview());
             }
 
